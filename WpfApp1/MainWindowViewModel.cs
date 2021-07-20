@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using WpfApp1.Helper_Classes;
 using WpfApp1.Home;
 using WpfApp1.Products;
+using WpfApp1.WpfUtils;
 
 namespace WpfApp1
 {

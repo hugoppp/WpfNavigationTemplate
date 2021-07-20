@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using WpfApp1.Helper_Classes;
+using WpfApp1.WpfUtils;
 
 namespace WpfApp1.Products
 {

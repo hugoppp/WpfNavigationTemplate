@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace WpfApp1.Helper_Classes
+namespace WpfApp1.WpfUtils
 {
 
 public class RelayCommand : ICommand
@@ -10,16 +10,8 @@ public class RelayCommand : ICommand
     private readonly Predicate<object?>? _canExecute;
     private readonly Action<object?> _execute;
 
-    public RelayCommand(Action<object?> execute)
-        : this(execute, null)
+    public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute = null)
     {
-    }
-
-    public RelayCommand(Action<object?> execute, Predicate<object?>? canExecute)
-    {
-        if (execute == null)
-            throw new ArgumentNullException("execute");
-
         _execute = execute;
         _canExecute = canExecute;
     }
@@ -27,7 +19,7 @@ public class RelayCommand : ICommand
     [DebuggerStepThrough]
     public bool CanExecute(object? parameters)
     {
-        return _canExecute == null ? true : _canExecute(parameters);
+        return _canExecute?.Invoke(parameters) ?? true;
     }
 
     public event EventHandler? CanExecuteChanged

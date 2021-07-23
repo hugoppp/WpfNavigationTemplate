@@ -18,7 +18,7 @@ public abstract class NotifyPropertyChanged : INotifyPropertyChanged
         return true;
     }
 
-    public virtual void RaisePropertyChanged(string propertyName)
+    public virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null!)
     {
         OnPropertyChanged(propertyName);
     }

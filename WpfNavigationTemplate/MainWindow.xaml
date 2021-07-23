@@ -6,6 +6,7 @@
         xmlns:home="clr-namespace:WpfApp1.Home"
         xmlns:products="clr-namespace:WpfApp1.Products"
         xmlns:local="clr-namespace:WpfApp1"
+        xmlns:wpfUtils="clr-namespace:WpfApp1.WpfUtils"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="Simple MVVM Example with Navigation" Height="350" Width="525">
@@ -15,12 +16,17 @@
     </Window.DataContext>
 
     <Window.Resources>
+        <!-- cached view variant 1 -->
         <DataTemplate DataType="{x:Type home:HomeViewModel}">
-            <home:HomeView />
+            <wpfUtils:CachedViewControl ViewType="{x:Type home:HomeView}" />
         </DataTemplate>
+
+        <!-- cached view variant 2 -->
+        <products:ProductsView x:Key="ProductsView" />
         <DataTemplate DataType="{x:Type products:ProductsViewModel}">
-            <products:ProductsView />
+            <ContentControl Content="{StaticResource ProductsView}" />
         </DataTemplate>
+
     </Window.Resources>
 
     <DockPanel>
